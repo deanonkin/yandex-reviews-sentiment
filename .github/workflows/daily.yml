@@ -1,0 +1,57 @@
+name: Daily reviews pipeline
+
+on:
+  schedule:
+    # Каждый день в 06:00 UTC (09:00 МСК)
+    - cron: '0 6 * * *'
+  workflow_dispatch:  # ручной запуск кнопкой на GitHub
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
+      - name: Build image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          load: true
+          tags: reviews-pipeline:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      - name: Cache HuggingFace models
+        uses: actions/cache@v4
+        with:
+          path: ./hf-cache
+          key: hf-cache-${{ hashFiles('config.py', 'requirements.txt') }}
+          restore-keys: hf-cache-
+
+      - name: Run pipeline
+        run: |
+          mkdir -p ./hf-cache
+          docker run --rm \
+            -e SUPABASE_DB_URL="${{ secrets.SUPABASE_DB_URL }}" \
+            -e HF_HOME=/hf-cache \
+            -v $(pwd)/hf-cache:/hf-cache \
+            reviews-pipeline:latest

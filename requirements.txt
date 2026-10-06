@@ -1,0 +1,11 @@
+ymrp
+playwright
+transformers>=4.40
+torch
+sentencepiece
+sacremoses
+psycopg2-binary
+pandas
+tqdm
+nest-asyncio
+python-dotenv
