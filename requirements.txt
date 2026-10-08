@@ -9,3 +9,5 @@ pandas
 tqdm
 nest-asyncio
 python-dotenv
+tiktoken
+protobuf
