@@ -1,4 +1,13 @@
-"""Оркестратор: парсинг → NLP → загрузка в Supabase."""
+"""Оркестратор: парсинг → NLP → загрузка в Supabase.
+
+Запуск целиком:
+    SUPABASE_DB_URL="postgresql://..." python pipeline.py
+
+Пропустить шаги:
+    python pipeline.py --skip-parse    # reviews_raw.csv уже есть
+    python pipeline.py --skip-nlp      # только парсинг
+    python pipeline.py --skip-upload   # без загрузки в БД
+"""
 import argparse
 import os
 import sys
