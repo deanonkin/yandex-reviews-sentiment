@@ -5,9 +5,9 @@
 дашборде в Apache Superset.
 
 **Дашборд:**
-!(docs/ss1.png)
-!(docs/ss2.png)
-!(docs/ss3.png)
+![](docs/ss1.png)
+![](docs/ss2.png)
+![](docs/ss3.png)
 
 ---
 
