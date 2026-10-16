@@ -65,4 +65,4 @@ ASPECT_KEYWORDS = {
 # --- Модели ---
 MT_MODEL = "Helsinki-NLP/opus-mt-ru-en"
 ABSA_MODEL = "yangheng/deberta-v3-base-absa-v1.1"
-TRANSLATE_BATCH = 16
+TRANSLATE_BATCH = 64
