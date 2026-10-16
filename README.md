@@ -117,10 +117,10 @@
 
 ## 📂 Структура проекта
 andex-reviews-sentiment/
-    ├── parser.py
-    ├── nlp.py
-    ├── upload_to_supabase.py
-    ├── pipeline.py
-    ├── config.py
-    ├── docs/
-    └── .github/workflows/
+- ├── parser.py
+- ├── nlp.py
+- ├── upload_to_supabase.py
+- ├── pipeline.py
+- ├── config.py
+- ├── docs/
+- └── .github/workflows/
