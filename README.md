@@ -85,14 +85,6 @@
 
 ---
 
-## 🖼 Скриншот дашборда
-
-![Дашборд](docs/dashboard.png)
-
-Полная версия в PDF: [docs/dashboard.pdf](docs/dashboard.pdf)
-
----
-
 ## 🛠 Что использовал
 
 | Что | Зачем |
